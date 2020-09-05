@@ -158,7 +158,7 @@ add 后面为插件包的路径地址，可以是相对路径或绝对路径。
 
 命令执行的运行图如下：
 
-![](file:///Users/wangke/Documents/Gridea/post-images/1599118069842.png)
+ <img src="https://blog-1252413502.cos.ap-shanghai.myqcloud.com/1599118069842.png" width = "600" />
 
 或在安装插件前就通过 ``` ionic integrations enable cordova``` 命令提前启用 Cordova 环境。
 
@@ -247,7 +247,7 @@ Cordova 使用 JSON 作为前端到 Android 插件层的消息传递格式。在
 1. 通过向 src/main/libs 目录导入下载的 jar 或 aar 包完成对三方库的引入。
 2. 通过 Gradle 完成对三方库的引入。
 
-🍭 推荐的方式： __ 尽可能去使用第2种方式来完成对三方库的引入 __  原因：由于我们的项目还会去引入别的三方插件，有些时候无可避免的会遇到别的插件引用了和你相同的三方库，如果通过手动下载 jar 包的方式去引入将会出现 jar 包冲突的错误。
+🍭 推荐的方式： ** 尽可能去使用第2种方式来完成对三方库的引入 **  原因：由于我们的项目还会去引入别的三方插件，有些时候无可避免的会遇到别的插件引用了和你相同的三方库，如果通过手动下载 jar 包的方式去引入将会出现 jar 包冲突的错误。
 
 下面通过向 app 下的 build.gradle 中的 dependencies 闭包中添加如下内容：
 
@@ -360,7 +360,7 @@ THREAD WARNING: exec() call to ToastPlugin.showToast blocked the main thread for
 ```
 
 
-👹注意！不能在子线程中做任何和 UI 有关的操作，否则会导致程序崩溃。如果需要更新 UI 请使用Handler 或 getActivity().runOnUiThread() 切换到主线程后再执行与UI相关的操作。
+👹 注意：不能在子线程中做任何和 UI 有关的操作，否则会导致程序崩溃。如果需要更新 UI 请使用Handler 或 getActivity().runOnUiThread() 切换到主线程后再执行与UI相关的操作。
 
 #### 5. 处理插件的生命周期事件
 
@@ -368,11 +368,11 @@ THREAD WARNING: exec() call to ToastPlugin.showToast blocked the main thread for
 
 当用户浏览、退出和返回到你的应用时，应用中的 Activity 的实例会在其生命周期的不同状态之间转换，Activity 类会提供许多回调方法，这些回调方法会让 Activity 知晓某个状态已经更改，系统正在创建、停止或恢复某个 Activity，或正在销毁该 Activity 所在的进程。Cordova Framework 会同步 WebView 所属的 Activity 的生命周期的状态到 CordovaPlugin。因此我们可以通过重写 CordovaPlugin 中的生命周期方法来让我们的插件能够响应不同的生命周期事件，以提升应用的稳定性和性能。
 
-下图为Android一个Activity的生命周期事件：
+下图为 Android 一个 Activity 的生命周期事件：
 
 ![](https://developer.android.com/guide/components/images/activity_lifecycle.png?hl=zh-cn)
 
-##### CordovaPlugin中的生命周期回调方法
+##### CordovaPlugin 中的生命周期回调方法
 
 在编写插件时，一般我们只需要对下面三个生命周期方法进行处理：
 
@@ -432,7 +432,7 @@ THREAD WARNING: exec() call to ToastPlugin.showToast blocked the main thread for
 
 ###  6. 为我们编写的插件创建 Ionic Native 包装
 
-通过以上五步我们已经完成了一个 Cordova 插件的编写，但基于 Cordova 编写的插件暴露给前端调用的代码是通过 JavaScript 语言编写的（www/ToastPlugin.js），而 Ionic 是基于 TypeScript 语言的，为了能够在 Ionic 端实现更容易和统一的功能调用，我们需要通过 Ionic Native 来对已经编写好的 Cordova 插件进行一层包装。Ionic Native 将插件中方法的成功或失败的回调包装在 Promise 或 Observable 中，为所有插件提供通用接口。
+通过以上五步我们已经完成了一个 Cordova 插件的编写，但基于 Cordova 编写的插件暴露给前端调用的代码是通过 JavaScript 语言编写的（www/ToastPlugin.js），而 Ionic 基于 TypeScript ，为了能够在 Ionic 端实现更容易和统一的功能调用，我们需要通过 Ionic Native 来对已经编写好的 Cordova 插件进行一层包装。Ionic Native 将插件中方法的成功或失败的回调包装在 Promise 或 Observable 中，为所有插件提供通用接口。
 
 #### 编写一个 Ionic Native 包装的步骤：
 
@@ -473,7 +473,9 @@ THREAD WARNING: exec() call to ToastPlugin.showToast blocked the main thread for
 #### 根据上述步骤为 ToastPlugin 插件创建 Ionic Native 包装
 
 1. 通过如下命令创建 ToastPlugin 的 index.ts 文件，在 /src/@ionic-native/plugins/toast-plugin-wrapper/ 下可以找到该文件。
-    ``` gulp plugin:create -n ToastPluginWrapper  
+    ```
+     gulp plugin:create -n ToastPluginWrapper 
+    ```
 
 2. 编写 index.ts 文件
 

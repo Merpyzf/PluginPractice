@@ -247,7 +247,8 @@ Cordova 使用 JSON 作为前端到 Android 插件层的消息传递格式。在
 1. 通过向 src/main/libs 目录导入下载的 jar 或 aar 包完成对三方库的引入。
 2. 通过 Gradle 完成对三方库的引入。
 
-🍭 推荐的方式： ** 尽可能去使用第2种方式来完成对三方库的引入 **  原因：由于我们的项目还会去引入别的三方插件，有些时候无可避免的会遇到别的插件引用了和你相同的三方库，如果通过手动下载 jar 包的方式去引入将会出现 jar 包冲突的错误。
+🍭 推荐的方式：尽可能去使用第2种方式来完成对三方库的引入。  
+   原因：由于我们的项目还会去引入别的三方插件，有些时候无可避免的会遇到别的插件引用了和你相同的三方库，如果通过手动下载 jar 包的方式去引入将会出现 jar 包冲突的错误。
 
 下面通过向 app 下的 build.gradle 中的 dependencies 闭包中添加如下内容：
 
@@ -514,7 +515,7 @@ THREAD WARNING: exec() call to ToastPlugin.showToast blocked the main thread for
 3. 通过在 ionic-native 的根路径下使用``` npm run build ``` 命令编译源码来生成 ionic 包装文件，生成包装文件的位置 /dist/@ionic-native/plugins/
     ![](https://blog-1252413502.cos.ap-shanghai.myqcloud.com/1599217663066.png)
 
-#### 👹可能会遇到到一些坑
+#### 👹 可能会遇到到一些坑
 
 1. 在 ionic-native 下编译生成的类型声明包中的 JavaScript 文件内会对 cordova 进行重复引用：
     
@@ -549,10 +550,15 @@ THREAD WARNING: exec() call to ToastPlugin.showToast blocked the main thread for
 ### 7. 在项目中通过 Ionic Native 包装调用 Cordova 插件功能
 
 1. 首先我们需要将上一步生成的 toast-plugin-wrapper 文件夹拷贝到项目下。
-2. <img src="https://blog-1252413502.cos.ap-shanghai.myqcloud.com/1599219056901.png" width = "600" />
-3. 在 appModule 中的 NgModule 元数据中将该服务提供出去，以允许外部通过依赖注入的方式实例化该插件。
-    <img src="https://blog-1252413502.cos.ap-shanghai.myqcloud.com/1599219176283.png" width = "600" />
-4. 调用插件的功能。
+   
+   <img src="https://blog-1252413502.cos.ap-shanghai.myqcloud.com/1599219056901.png" width = "600" />
+
+2. 在 appModule 中的 NgModule 元数据中将该服务提供出去，以允许外部通过依赖注入的方式实例化该插件。
+
+   <img src="https://blog-1252413502.cos.ap-shanghai.myqcloud.com/1599219176283.png" width = "600" />
+
+3. 调用插件的功能。
+
     <img src="https://blog-1252413502.cos.ap-shanghai.myqcloud.com/1599219523194.png" width = "600" />
     
 ### 🎊结束
